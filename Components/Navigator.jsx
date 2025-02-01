@@ -48,7 +48,7 @@ const styles = StyleSheet.create({
   },
   activeNavigatorItem: {
     backgroundColor: "black",
-    borderRadius: 10,
+    borderRadius: 7,
   },
   navigatorText: {
     fontSize: 16,

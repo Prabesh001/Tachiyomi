@@ -40,7 +40,7 @@ const Content = () => {
 
   return (
     <ScrollView style={{ margin: 10 }}>
-      <Text style={[styles.text]}>{selectedNav}</Text>
+      <Text style={[styles.text, styles.header]}>{selectedNav}</Text>
       {loading ? (
         <View style={styles.loader}>
           <ActivityIndicator size="large" color="blue" />
@@ -68,6 +68,9 @@ const styles = StyleSheet.create({
     color: "white",
     fontSize: 18,
     fontWeight: "bold",
+  },
+  header:{
+    fontSize: 25,
   },
   listItems: {
     display: "flex",
