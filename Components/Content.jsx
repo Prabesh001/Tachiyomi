@@ -9,13 +9,14 @@ import {
 import { useState, useContext, useEffect, useLayoutEffect } from "react";
 import { SelectedNavContext } from "../app/index";
 const image = require("../assets/images/favicon.png");
+import MaterialIcons from "react-native-vector-icons/MaterialIcons";
 
 const Content = () => {
   const { selectedNav } = useContext(SelectedNavContext);
   const [items, setItems] = useState([]);
   const [loading, setLoading] = useState(false);
 
-  useLayoutEffect(() => {
+  useEffect(() => {
     const fetchData = async () => {
       setLoading(true);
       try {
@@ -25,13 +26,13 @@ const Content = () => {
         const json = await response.json();
 
         const filteredData = json.filter((data) =>
-          data.category.includes(selectedNav)
+          data.category.includes(selectedNav.name)
         );
         setItems(filteredData);
       } catch (error) {
         console.error("Error fetching menu data:", error);
       } finally {
-        setLoading(false);
+        setLoading(true);
       }
     };
 
@@ -39,8 +40,11 @@ const Content = () => {
   }, [selectedNav]);
 
   return (
-    <ScrollView style={{ margin: 10 }}>
-      <Text style={[styles.text, styles.header]}>{selectedNav}</Text>
+    <ScrollView style={{ marginVertical: 10 }}>
+      <View style={styles.headerWithIcon}>
+        <Text style={[styles.text, styles.header]}>{selectedNav.name} </Text>
+        <MaterialIcons name={selectedNav.icon} size={30} color="white" />
+      </View>
       {loading ? (
         <View style={styles.loader}>
           <ActivityIndicator size="large" color="blue" />
@@ -55,7 +59,9 @@ const Content = () => {
                 style={styles.image}
               />
               <Text style={[styles.text, styles.itemName]}>{item.name}</Text>
-              <Text style={[styles.text, styles.itemPrice]}>Rs. {item.discountedPrice}</Text>
+              <Text style={[styles.text, styles.itemPrice]}>
+                Rs. {item.discountedPrice}
+              </Text>
             </View>
           ))}
         </View>
@@ -69,7 +75,7 @@ const styles = StyleSheet.create({
     fontSize: 18,
     fontWeight: "bold",
   },
-  header:{
+  header: {
     fontSize: 25,
   },
   listItems: {
@@ -78,23 +84,30 @@ const styles = StyleSheet.create({
     flexWrap: "wrap",
     gap: (10, 20),
     padding: 5,
-    marginBottom: 50,
+    marginBottom: 70,
   },
   image: {
     minWidth: 180,
-    aspectRatio: 5/8,
+    aspectRatio: 5 / 8,
   },
   itemName: {
     maxWidth: 175,
     overflow: "hidden",
   },
-  itemPrice:{
-    color:"orange"
+  itemPrice: {
+    color: "orange",
   },
   loader: {
-    justifyContent:"center",
-    alignItems:"center",
-    height: 800
+    justifyContent: "center",
+    alignItems: "center",
+    height: 750,
+  },
+  headerWithIcon: {
+    display: "flex",
+    flexDirection: "row",
+    alignItems: "center",
+    boxShadow:"0 0 1px lightgray",
+    padding: 6
   },
 });
 

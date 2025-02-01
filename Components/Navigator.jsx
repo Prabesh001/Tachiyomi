@@ -1,25 +1,36 @@
 import { View, Text, StyleSheet, Pressable } from "react-native";
 import React, { useContext, useState } from "react";
 import { SelectedNavContext } from "../app/index";
+import MaterialIcons from "react-native-vector-icons/MaterialIcons";
 
 const Navigator = () => {
   const { setSelectedNav, selectedNav } = useContext(SelectedNavContext);
-  const navigatorItems = ["Main Course", "Side Dish", "Appetizer", "Beverage", "Soup"];
+  const navigatorItems = [
+    {name: "Main Course", icon: "food-bank"},
+    {name: "Side Dish", icon: "fastfood"},
+    {name: "Appetizer", icon: "donut-small"},
+    {name: "Beverage", icon: "emoji-food-beverage"},
+    {name: "Soup", icon: "soup-kitchen"}
+  ];
   return (
     <View style={styles.navigator}>
       {navigatorItems.map((item) => (
-        <Pressable
-          key={item}
-          onPress={() => setSelectedNav(item)}
-        >
+        <Pressable key={item.name} onPress={() => setSelectedNav(item)}>
           <View
-            key={item}
+            key={item.name}
             style={[
               styles.navigatorItem,
-              selectedNav === item && styles.activeNavigatorItem,
+              selectedNav.name === item.name && styles.activeNavigatorItem,
             ]}
           >
-            <Text style={styles.navigatorText}>{item}</Text>
+            <View style={{ justifyContent: "center", alignItems: "center" }}>
+              <MaterialIcons
+                name={item.icon}
+                size={30}
+                color="white"
+              />
+            </View>
+            <Text style={styles.navigatorText}>{item.name}</Text>
           </View>
         </Pressable>
       ))}
@@ -33,16 +44,16 @@ const styles = StyleSheet.create({
     justifyContent: "space-around",
     alignItems: "center",
     backgroundColor: "#0a0a0a",
-    height: 50,
+    height: 70,
     position: "absolute",
     bottom: 0,
     width: "100%",
     zIndex: 1000,
     padding: 3,
-    boxShadow: '0px 1px 5px white'
+    boxShadow: "0px 3px 5px lightgray",
   },
   navigatorItem: {
-    paddingVertical:9,
+    paddingVertical: 4,
     paddingHorizontal: 7,
     backgroundColor: "#0a0a0a",
   },
@@ -51,8 +62,8 @@ const styles = StyleSheet.create({
     borderRadius: 7,
   },
   navigatorText: {
-    fontSize: 16,
-    color:"white",
+    fontSize: 14,
+    color: "white",
     fontWeight: "bold",
   },
 });
