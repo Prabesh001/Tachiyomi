@@ -6,7 +6,7 @@ import { createContext, useState } from "react";
 export const SelectedNavContext = createContext();
 
 const index = () => {
-  const [selectedNav, setSelectedNav] = useState("Library");
+  const [selectedNav, setSelectedNav] = useState("Main Course");
   return (
     <SelectedNavContext.Provider value={{ selectedNav, setSelectedNav }}>
       <SafeAreaView style={styles.container}>

@@ -4,7 +4,7 @@ import { SelectedNavContext } from "../app/index";
 
 const Navigator = () => {
   const { setSelectedNav, selectedNav } = useContext(SelectedNavContext);
-  const navigatorItems = ["Library", "Updates", "History", "Browse", "More"];
+  const navigatorItems = ["Main Course", "Side Dish", "Appetizer", "Beverage", "Soup"];
   return (
     <View style={styles.navigator}>
       {navigatorItems.map((item) => (
@@ -32,23 +32,27 @@ const styles = StyleSheet.create({
     flexDirection: "row",
     justifyContent: "space-around",
     alignItems: "center",
-    backgroundColor: "lightgray",
+    backgroundColor: "#0a0a0a",
     height: 50,
     position: "absolute",
     bottom: 0,
     width: "100%",
     zIndex: 1000,
+    padding: 3,
+    boxShadow: '0px 1px 5px white'
   },
   navigatorItem: {
-    padding: 10,
-    backgroundColor: "lightgray",
+    paddingVertical:9,
+    paddingHorizontal: 7,
+    backgroundColor: "#0a0a0a",
   },
   activeNavigatorItem: {
-    backgroundColor: "white",
+    backgroundColor: "black",
     borderRadius: 10,
   },
   navigatorText: {
-    fontSize: 17,
+    fontSize: 16,
+    color:"white",
     fontWeight: "bold",
   },
 });
