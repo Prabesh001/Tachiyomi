@@ -1,7 +1,9 @@
 import { View, StatusBar, SafeAreaView, StyleSheet, Text } from "react-native";
 import Navigator from "../Components/Navigator";
-import Content from "../Components/Content";
+// import Content from "../Components/Content";
+import Core from "../Components/Core";
 import { createContext, useState } from "react";
+import "./index.css"
 
 export const SelectedNavContext = createContext();
 
@@ -12,7 +14,7 @@ const index = () => {
       <SafeAreaView style={styles.container}>
         <StatusBar />
         <Navigator />
-        <Content />
+        <Core />
       </SafeAreaView>
      </SelectedNavContext.Provider>
   );

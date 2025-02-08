@@ -35,7 +35,7 @@ const Greet = () => {
         onPress={() => Alert.alert("Hello World", "This is an alert")}
       />
       <Pressable>
-        <Text>Hi!</Text>
+        <Text className="text-red-50 font-bold bg-slate-500">Hi!</Text>
         <Text
           onPress={() => {
             console.log("Text Pressed");

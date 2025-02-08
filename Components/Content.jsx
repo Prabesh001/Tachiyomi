@@ -6,7 +6,7 @@ import {
   Image,
   ActivityIndicator,
 } from "react-native";
-import { useState, useContext, useEffect, useLayoutEffect } from "react";
+import { useState, useContext, useEffect } from "react";
 import { SelectedNavContext } from "../app/index";
 const image = require("../assets/images/favicon.png");
 import MaterialIcons from "react-native-vector-icons/MaterialIcons";
@@ -32,7 +32,7 @@ const Content = () => {
       } catch (error) {
         console.error("Error fetching menu data:", error);
       } finally {
-        setLoading(true);
+        setLoading(false);
       }
     };
 
